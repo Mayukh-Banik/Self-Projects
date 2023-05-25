@@ -1,1 +1,1 @@
-# Self-Projects
+Creating Numpy by method definitions
