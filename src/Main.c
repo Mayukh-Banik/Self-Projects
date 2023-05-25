@@ -1,6 +1,7 @@
 #include "npArrayDef.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 int main(int argc, char* argv[])
 {
@@ -10,5 +11,11 @@ int main(int argc, char* argv[])
         arr->dimensionCount++;
     }
     printf("%d\n", arr->dimensionCount);
+        char character = '.';
+        if (strchr(argv[1], character) != NULL) {
+        printf("The string contains the character '%c'\n", character);
+    } else {
+        printf("The string does not contain the character '%c'\n", character);
+    }
     return 0;
 }
