@@ -1,7 +1,7 @@
 # Compiler
 CC := gcc
 # Compiler flags
-CFLAGS := -Wall -Wextra -Iinclude
+CFLAGS := -Wall -Wextra -Iinclude -Wno-unused-parameter
 
 # Debug flags
 DBGFLAGS := -g
@@ -11,7 +11,7 @@ SRCDIR := src
 INCDIR := include
 BINDIR := bin
 
-# Source files
+# Source filesa
 SRCS := $(wildcard $(SRCDIR)/*.c)
 # Object files
 OBJS := $(patsubst $(SRCDIR)/%.c,$(BINDIR)/%.o,$(SRCS))

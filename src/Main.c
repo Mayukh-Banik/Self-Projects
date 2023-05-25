@@ -1,24 +1,14 @@
 #include "npArrayDef.h"
-#define PY_SSIZE_T_CLEAN
-#include <python3.10/Python.h>
+#include <stdlib.h>
 #include <stdio.h>
+
 int main(int argc, char* argv[])
 {
-    if (argc != 1 || argv[1] != NULL)
+    Array* arr = calloc(1, sizeof(Array));
+    for (int count = 1; argv[count] != NULL; count++)
     {
-        return -1;
+        arr->dimensionCount++;
     }
-    
+    printf("%d\n", arr->dimensionCount);
     return 0;
-}
-
-static PyObject* spam_system(PyObject *self, PyObject *args)
-{
-    const char *command;
-    int sts;
-
-    if (!PyArg_ParseTuple(args, "s", &command))
-        return NULL;
-    sts = system(command);
-    return PyLong_FromLong(sts);
 }
