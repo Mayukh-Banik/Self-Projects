@@ -1,7 +1,7 @@
 # Compiler
 CC := gcc
 # Compiler flags
-CFLAGS := -Wall -Wextra -Iinclude -Wno-unused-parameter
+CFLAGS := -Wall -Wextra -Iinclude -Wno-unused-parameter -IC
 
 # Debug flags
 DBGFLAGS := -g
