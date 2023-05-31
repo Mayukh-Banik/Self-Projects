@@ -4,7 +4,7 @@
 /*
     Work In Progress
 */
-int saveToFile(Array* array, char* filepath)
+int saveToFileArrayFormat(Array* array, char* filepath)
 {
     if (array == NULL || filepath == NULL)
     {

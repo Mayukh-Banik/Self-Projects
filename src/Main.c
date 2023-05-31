@@ -11,9 +11,12 @@ void sigio_handler(int signum);
 void sigsegv_handler(int signum);
 void exitGracefully(int exitNumber);
 
+static char* INITPRINTOUT = "FUNCTIONALITY: ";
 
 int main(int argc, char* argv[])
 {
+    printf("%s", INITPRINTOUT);
+    fflush(stdout);
     savedArrays = calloc(1, sizeof(ArrayList));
     tempArrays = calloc(1, sizeof(ArrayList));
 
@@ -76,6 +79,7 @@ void sigio_handler(int signum)
     {
         exitGracefully(0);
     }
+    
 }
 
 void exitGracefully(int exitNumber)
