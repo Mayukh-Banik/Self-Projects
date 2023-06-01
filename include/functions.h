@@ -4,8 +4,6 @@ int saveToFileArrayFormat(Array* array, char* filepath);
 Array* loadFromFile(char* filepath);
 void inputStringHandler(char* input);
 
-
-
 /*
     Numpy.empty() Implementation
     Return a new array of given shape and type, all data set to 0.
@@ -19,10 +17,26 @@ void inputStringHandler(char* input);
         will be the number of rows in the array
 
     @return An allocated array at least of size of all dimensions multiplied
-        with all values within set to 0
+        with all values within set to 0, this will have to be appended to 
+        a predefined array to be appended, this only allocates the data to store
+        the actual values
     
     @throws ENOMEM assuming the allocation request fails
 */
-Array* empty(char* DataType, int numArgs, void* data);
+void* empty(char* DataType, int numArgs, void* data);
+
+/*
+    Return a 2-D array with ones on the diagonal and zeros elsewhere.
+
+    @param N Number of rows
+    @param M Number of columns (0 if N == M)
+    @param DataType String for data type
+    @param K Offset
+
+    @return Pointer to allocated array that can store the data
+*/
+void* eye(int N, int M, char* DataType, int K);
+
+void* identity(int N, char* DataType);
 
 // https://numpy.org/devdocs/reference/generated/numpy.empty.html
