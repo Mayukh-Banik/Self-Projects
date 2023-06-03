@@ -1,7 +1,7 @@
 # Compiler
-CC := gcc
+CXX := g++
 # Compiler flags
-CFLAGS := -Wall -Wextra -Iinclude -Wno-unused-parameter -IC
+CXXFLAGS := -Wall -Wextra -Iinclude -Wno-unused-parameter
 
 # Debug flags
 DBGFLAGS := -g
@@ -11,27 +11,29 @@ SRCDIR := src
 INCDIR := include
 BINDIR := bin
 
-# Source filesa
-SRCS := $(wildcard $(SRCDIR)/*.c)
+# Source files
+SRCS := $(wildcard $(SRCDIR)/*.cpp)
 # Object files
-OBJS := $(patsubst $(SRCDIR)/%.c,$(BINDIR)/%.o,$(SRCS))
+OBJS := $(patsubst $(SRCDIR)/%.cpp,$(BINDIR)/%.o,$(SRCS))
 
 # Executable
-EXECUTABLE := $(BINDIR)/Executable.out
+EXECUTABLE := $(BINDIR)/Run.out
 
 .PHONY: all clean debug
 
 all: $(EXECUTABLE)
 
-debug: CFLAGS += $(DBGFLAGS)
+debug: CXXFLAGS += $(DBGFLAGS)
 debug: all
 
 $(EXECUTABLE): $(OBJS)
-	$(CC) $(CFLAGS) $^ -o $@
+	@mkdir -p $(BINDIR)
+	$(CXX) $(CXXFLAGS) $^ -o $@
 
-$(BINDIR)/%.o: $(SRCDIR)/%.c
+$(BINDIR)/%.o: $(SRCDIR)/%.cpp
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
 	rm -rf $(BINDIR)
+

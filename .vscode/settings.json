@@ -2,7 +2,9 @@
     "files.associations": {
         "python.h": "c",
         "select.h": "c",
-        "nparraydef.h": "c"
+        "nparraydef.h": "c",
+        "stdarg.h": "c",
+        "iostream": "cpp"
     },
     "C_Cpp.errorSquiggles": "enabled",
     "C_Cpp.default.compilerPath": "/usr/bin/gcc",
