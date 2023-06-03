@@ -1,7 +1,15 @@
-Project Goals:
+Project Steps:
 
-Re-create as many numpy functions as possible
+1)
+Re-Create as much of Numpy in C++, but with custom inputs due to the 
+inability of Python like argument parsing as of this point in time
+using only the CPU to make computation easier to code.
 
-End goal is to make it a Python Library, but as of right now,
-the documentation for doing so sucks, so arrays will be saved to a file
-and those file results will be used to check if the values are correct.
+2) 
+Integrate CUDA support into the program to ensure that it works properly.
+
+3)
+Make the code able to be run in Python to allow for easy usage
+
+4)
+Start implementing Machine Learning methods into the code.
