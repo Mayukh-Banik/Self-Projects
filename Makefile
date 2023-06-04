@@ -1,7 +1,7 @@
 # Compiler
 CXX := g++
 # Compiler flags
-CXXFLAGS := -Wall -Wextra -Iinclude -Wno-unused-parameter
+CXXFLAGS := -Wall -Wextra -Iinclude -Wno-unused-parameter -Wpedantic -Werror
 
 # Debug flags
 DBGFLAGS := -g

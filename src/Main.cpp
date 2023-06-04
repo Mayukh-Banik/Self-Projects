@@ -1,12 +1,12 @@
 #include "includes.h"
 #include "classes.h"
-#define MAX_BUFFER 1024
 
 void sigint_handler(int signum);
 void sigio_handler(int signum);
 void sigsegv_handler(int signum);
 void exitGracefully(int exitNumber);
 
+const int MAX_BUFFER = 4096;
 static const char* INITPRINTOUT = "FUNCTIONALITY: \n";
 
 int main(int argc, char* argv[])
@@ -71,7 +71,25 @@ void sigio_handler(int signum)
     {
         exitGracefully(0);
     }
-    
+    char* argv[MAX_BUFFER/2];  
+    const char* sdf = "bin/Run.out";
+    argv[0] = (char*) sdf;
+    int argc = 1;
+    char* token = std::strtok(readBuffer, " ");
+    while (token != nullptr && argc < MAX_BUFFER/2) 
+    {
+        argv[argc++] = token;
+        // argc++;
+        token = std::strtok(nullptr, " ");
+    }
+    argv[argc + 1] = nullptr;
+    for (int i = 0; i < argc; i++)
+    {
+        fprintf(stdout, "%s\n", argv[i]);    
+        fflush(stdout);
+    }
+    // fprintf(stdout, "%s\n", argv[0]);
+    // fflush(stdout);
 }
 
 void exitGracefully(int exitNumber)
