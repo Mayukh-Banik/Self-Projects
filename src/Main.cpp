@@ -6,8 +6,14 @@ void sigio_handler(int signum);
 void sigsegv_handler(int signum);
 void exitGracefully(int exitNumber);
 
-const int MAX_BUFFER = 4096;
+static const int MAX_BUFFER = 4096;
 static const char* INITPRINTOUT = "FUNCTIONALITY: \n";
+
+struct option long_options[] = {
+    {"help", no_argument, nullptr, 'h'},
+    {"empty", required_argument, nullptr, 0},
+    {nullptr, 0, nullptr, 0} // The last element must be all zeros
+};
 
 int main(int argc, char* argv[])
 {
