@@ -1,12 +1,16 @@
 #include "includes.h"
 #include "classes.h"
 
-NP::NP()
+template <typename T>
+
+NP<T>::NP()
 {
     this->arr = new NPARR;
 }
 
-NP::NP(int elementCount, int elementSize, bool real, bool sign, int** shape, void* data)
+template <typename T>
+
+NP<T>::NP(int elementCount, int elementSize, bool real, bool sign, int** shape, void* data)
 {
     this->arr = new NPARR;
     this->arr->elementCount = elementCount;

@@ -1,5 +1,7 @@
 #include "typedef.h"
 
+template <typename T>
+
 class NP 
 {   
     public:

@@ -6,18 +6,11 @@ void sigio_handler(int signum);
 void sigsegv_handler(int signum);
 void exitGracefully(int exitNumber);
 
-static const int MAX_BUFFER = 4096;
 static const char* INITPRINTOUT = "FUNCTIONALITY: \n";
-
-struct option long_options[] = {
-    {"help", no_argument, nullptr, 'h'},
-    {"empty", required_argument, nullptr, 0},
-    {nullptr, 0, nullptr, 0} // The last element must be all zeros
-};
-
+using namespace std;
 int main(int argc, char* argv[])
 {
-    std::cout << INITPRINTOUT;
+    cout << INITPRINTOUT;
     // Sets Up the Input Reader
     sigset_t mask;
     sigemptyset(&mask);
@@ -44,8 +37,8 @@ int main(int argc, char* argv[])
     }
     while (true)
     { 
-        std::cout << "> ";
-        std::cout.flush();
+        cout << "> ";
+        cout.flush();
         sigsuspend(&mask);
     }
     return 0;
@@ -63,39 +56,41 @@ void sigint_handler(int signum)
 
 void sigio_handler(int signum)
 {
-    char readBuffer[MAX_BUFFER];
-    int readCount = read(STDIN_FILENO, readBuffer, MAX_BUFFER);
-    if (readCount == -1)
+    string input;
+    getline(cin, input);
+    istringstream iss(input);
+    string word;
+    vector<vector<string>> stringVector;
+
+    while (iss >> word) 
     {
-        if (errno == EBADF || errno == EFAULT)
+        if (word[0] == '-') 
         {
-            exitGracefully(-3);
+            vector<string> newVector;
+            newVector.push_back(word);
+            stringVector.push_back(newVector);
         }
-        return; 
+        else if (!stringVector.empty()) 
+        {
+            stringVector.back().push_back(word);
+        }
+        else
+        {
+            vector<string> newVector;
+            newVector.push_back(word);
+            stringVector.push_back(newVector);
+        }
     }
-    if (readCount == 0)
+
+    for (const auto& vec : stringVector) 
     {
-        exitGracefully(0);
+        for (const auto& str : vec) 
+        {
+            cout << str << " ";
+        }
+        cout << endl;
     }
-    char* argv[MAX_BUFFER/2];  
-    const char* sdf = "bin/Run.out";
-    argv[0] = (char*) sdf;
-    int argc = 1;
-    char* token = std::strtok(readBuffer, " ");
-    while (token != nullptr && argc < MAX_BUFFER/2) 
-    {
-        argv[argc++] = token;
-        // argc++;
-        token = std::strtok(nullptr, " ");
-    }
-    argv[argc + 1] = nullptr;
-    for (int i = 0; i < argc; i++)
-    {
-        fprintf(stdout, "%s\n", argv[i]);    
-        fflush(stdout);
-    }
-    // fprintf(stdout, "%s\n", argv[0]);
-    // fflush(stdout);
+
 }
 
 void exitGracefully(int exitNumber)
