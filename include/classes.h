@@ -1,5 +1,5 @@
 #include "typedef.h"
-
+#pragma once
 template <typename T>
 
 class NP 
@@ -9,17 +9,27 @@ class NP
 
         NP();
 
-        NP(int elementCount, int elementSize, bool real, bool sign, int** shape, void* data);
+        NP(NPARR* arr);
 
-        static NP* empty(int** shape, int elementSize);
+        NP(int elementCount, std::size_t elementSize, int* shape, void* data);
 
-        static NP* eye(int N, int M, int K, int elementSize);
+        static NP* empty(int* shape, T element);
 
-        static NP* identity(int N, int elementSize);
+        static NP* eye(int N, int M, int K, T element);
+
+        static NP* identity(int N, T element);
 
         static NP* ones(int** shape, int elementSize);
 
         static NP* zeros(int** shape, int elementSize);
 
         static NP* full(int** shape, void* fillValue, int elementSize, NP* vals);
+
+        static void deleteNP(NP* pointer)
+        {
+            free(pointer->arr->data);
+            free(pointer->arr->shape);
+            delete(pointer->arr);
+            delete(pointer);
+        }
 };

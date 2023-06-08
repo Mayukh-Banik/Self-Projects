@@ -12,11 +12,10 @@ typedef struct ArrayList {
     void** pointers;
 } ArrayList;
 
+
 typedef struct NPARR {
     int elementCount = -1;
-    int elementSize = -1;
-    bool real = false;
-    bool sign = false;
-    int** shape = nullptr;
+    std::size_t elementSize = -1;
+    int* shape = nullptr;
     void* data = nullptr;
 } NPARR;
