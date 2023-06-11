@@ -19,11 +19,11 @@ class NP
 
         static NP* identity(int N, T element);
 
-        static NP* ones(int** shape, int elementSize);
+        static NP* ones(int* shape, T element);
 
-        static NP* zeros(int** shape, int elementSize);
+        static NP* zeros(int* shape, T element);
 
-        static NP* full(int** shape, void* fillValue, int elementSize, NP* vals);
+        static NP* full(int* shape, T fillValue);
 
         static void deleteNP(NP* pointer)
         {
@@ -32,4 +32,6 @@ class NP
             delete(pointer->arr);
             delete(pointer);
         }
+
+        NP* copy();
 };

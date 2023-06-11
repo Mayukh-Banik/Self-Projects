@@ -14,8 +14,11 @@ typedef struct ArrayList {
 
 
 typedef struct NPARR {
+    int dimensionCount = -1;
     int elementCount = -1;
     std::size_t elementSize = -1;
     int* shape = nullptr;
     void* data = nullptr;
 } NPARR;
+
+#define MAX_DIMENSION_COUNT 64
