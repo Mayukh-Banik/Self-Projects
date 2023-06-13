@@ -1,8 +1,8 @@
-#include "includes.h"
-#include "classes.h"
-#include "npFuncDef.cpp"
+// #include "includes.h"
+// #include "classes.h"
+// #include "npFuncDef.cpp"
+// #include "functions.h"
 #include "functions.h"
-
 int main(int argc, char* argv[])
 {
     TEST_EYE_ALL_VALUES_ZERO();
@@ -10,5 +10,6 @@ int main(int argc, char* argv[])
     TEST_ONES();
     TEST_ZEROS();
     TEST_FILL();
+    TEST_SHAPE();
     return 0;
 }

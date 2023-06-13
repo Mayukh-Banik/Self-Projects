@@ -28,7 +28,7 @@ void TEST_EYE_ALL_VALUES_ZERO()
 void TEST_IDENTITY()
 {
     int T = 100;
-    NP<double>* temp = NP<double>::identity(T, (double) NULL);
+    NP<double>* temp = NP<double>::identity(T);
     for (int i = 0; i < T; i++) 
     {
         for (int j = 0; j < T; j++) 
@@ -114,4 +114,44 @@ void TEST_FILL()
     }
     NP<int>::deleteNP(temp);
 }
+
+void TEST_SHAPE()
+{
+    int* s = shape(1, 2, 3, 4, 5, 6, 0);
+    for (int i = 0; i < 6; i++)
+    {
+        if (s[i] != (i + 1))
+        {
+            std::cout << "Test Shape Error" << std::endl;
+            free(s);
+            return;
+        }
+    }
+    if (s[6] != 0)
+    {
+        std::cout << "Test Shape Error" << std::endl;
+        free(s);
+        return;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

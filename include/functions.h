@@ -4,3 +4,5 @@ void TEST_IDENTITY();
 void TEST_ONES();
 void TEST_ZEROS();
 void TEST_FILL();
+void TEST_SHAPE();
+int* shape(int a, ...);
