@@ -40,27 +40,29 @@ class NP
         static NP* identity(int N, T element = (double) NULL);
 
         /**
-         * Returns a shape matrix, 
+         * Returns a shape matrix, filled with ones
         */
         static NP* ones(int* shape, T element = (double) NULL);
 
+        /**
+         * Returns a shape matrix, filled with zeros
+        */
         static NP* zeros(int* shape, T element);
 
+        /**
+         * Returns a shape matrix with all values set to fillvalue
+        */
         static NP* full(int* shape, T fillValue);
 
-        static void deleteNP(NP* pointer)
-        {
-            free(pointer->arr->data);
-            free(pointer->arr->shape);
-            delete(pointer->arr);
-            delete(pointer);
-        }
+        /**
+         * Use this to safely delete a NP object
+        */
+        static void deleteNP(NP* pointer);
 
         NP* copy();
 
         NP* multiply(const NP* obj1, const NP* obj2);
         
-
 
 
 };

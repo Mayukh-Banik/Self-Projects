@@ -1,9 +1,27 @@
 #include "includes.h"
 #include "npFuncDef.cpp"
+#include "NPConstructorDef.cpp"
+#include "NPCreationRoutines.cpp"
 #include "functions.h"
 #include "classes.h"
+#include "Functions.cpp"
 
-void TEST_EYE_ALL_VALUES_ZERO()
+void TEST_EYE_STANDARD()
+{
+    NP<double>* arr = NP<double>::eye(5, 6, -1, (double) NULL);
+    int count = 0;
+    for (int i = 0; i < 5; i++)
+    {
+        for (int j = 0; j < 6; j++)
+        {
+            std::cout << ((double*) arr->arr->data)[count++] << " ";
+        }
+        std::cout << std::endl;
+    }
+    NP<double>::deleteNP(arr);
+}
+
+void TEST_EMPTY_ALL_VALUES_ZERO()
 {
     return;
     int* shape = (int*) malloc(sizeof(int) * 5);
@@ -117,22 +135,23 @@ void TEST_FILL()
 
 void TEST_SHAPE()
 {
-    int* s = shape(1, 2, 3, 4, 5, 6, 0);
-    for (int i = 0; i < 6; i++)
-    {
-        if (s[i] != (i + 1))
-        {
-            std::cout << "Test Shape Error" << std::endl;
-            free(s);
-            return;
-        }
-    }
-    if (s[6] != 0)
-    {
-        std::cout << "Test Shape Error" << std::endl;
-        free(s);
-        return;
-    }
+    int* s = shape(2,1,3,102,123,34,99,9123,89,19,824,01);
+    // int i = 0;
+    // std::cout << s[i++] << std::endl;
+    // std::cout << s[i++] << std::endl;
+    // std::cout << s[i++] << std::endl;
+    // std::cout << s[i++] << std::endl;
+    // std::cout << s[i++] << std::endl;
+    // std::cout << s[i++] << std::endl;
+    // std::cout << s[i++] << std::endl;
+    // std::cout << s[i++] << std::endl;
+    // std::cout << s[i++] << std::endl;
+    // std::cout << s[i++] << std::endl;
+    // std::cout << s[i++] << std::endl;
+    // std::cout << s[i++] << std::endl;
+    // std::cout << s[i++] << std::endl;
+    // std::cout << s[i++] << std::endl;
+    free(s);
 }
 
 

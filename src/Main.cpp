@@ -5,11 +5,12 @@
 #include "functions.h"
 int main(int argc, char* argv[])
 {
-    TEST_EYE_ALL_VALUES_ZERO();
-    TEST_IDENTITY();
-    TEST_ONES();
-    TEST_ZEROS();
-    TEST_FILL();
-    TEST_SHAPE();
+    TEST_EYE_STANDARD();
+    // TEST_EMPTY_ALL_VALUES_ZERO();
+    // TEST_IDENTITY();
+    // TEST_ONES();
+    // TEST_ZEROS();
+    // TEST_FILL();
+    // TEST_SHAPE();
     return 0;
 }

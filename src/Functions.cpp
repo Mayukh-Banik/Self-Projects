@@ -1,27 +1,26 @@
 #include "includes.h"
 
-int* shape(int a, ...)
+template <typename... Things>
+
+int* shape(Things... things) 
 {
     int* arr = (int*) malloc(sizeof(int));
-    arr[0] = a;
-
-    va_list args;
-    va_start(args, a);
-
-    int size = 1;
-
-    // Retrieve and store the variable arguments
-    int arg;
-    while ((arg = va_arg(args, int)) != 0) 
+    int a = 0;
+    for(const int p : {things...}) 
     {
-        size++;
-        arr = (int*) realloc(arr, size * sizeof(int));
-        arr[size - 1] = arg;
+        arr = (int*) realloc(arr, sizeof(int) * (a+1));
+        arr[a] = p;
+        a++;
     }
-    size++;
-    arr = (int*) realloc(arr, size * sizeof(int));
-    arr[size - 1] = 0;
-
+    if (a == 1)
+    {
+        arr = (int*) realloc(arr, sizeof(int) * 3);
+        arr[1] = 1;
+        arr[2] = 0;
+        return arr;
+    }
+    arr = (int*) realloc(arr, sizeof(int) * (a+1));
+    arr[a] = 0;
     return arr;
 }
 
