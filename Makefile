@@ -1,7 +1,7 @@
 # Compiler
 CXX := g++
 # Compiler flags
-CXXFLAGS := -Wall -Wextra -Iinclude -Wno-unused-parameter -Wpedantic -Werror -ldl
+CXXFLAGS := -Wall -Wextra -Iinclude -Wno-unused-parameter -Wpedantic -Werror -ldl -lgtest -lgtest_main -lpthread
 
 # Debug flags
 DBGFLAGS := -g
@@ -17,7 +17,7 @@ SRCS := $(wildcard $(SRCDIR)/*.cpp)
 OBJS := $(patsubst $(SRCDIR)/%.cpp,$(BINDIR)/%.o,$(SRCS))
 
 # Executable
-EXECUTABLE := $(BINDIR)/Run.out
+EXECUTABLE := $(BINDIR)/Tensor.out
 
 .PHONY: all clean debug
 
@@ -28,12 +28,11 @@ debug: all
 
 $(EXECUTABLE): $(OBJS)
 	@mkdir -p $(BINDIR)
-	$(CXX) $(CXXFLAGS) $^ -o $@
+	$(CXX) $^ -o $@ $(CXXFLAGS)
 
 $(BINDIR)/%.o: $(SRCDIR)/%.cpp
 	@mkdir -p $(@D)
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+	$(CXX) -c $< -o $@ $(CXXFLAGS)
 
 clean:
 	rm -rf $(BINDIR)
-

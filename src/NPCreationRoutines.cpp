@@ -36,7 +36,6 @@ NP<T>* NP<T>::eye(int N, int M, int K, T element)
         return nullptr;
     }
     int size = M == 0 ? N * N : N * M;
-    std::cout << "Size: " << size << std::endl;
     M = M == 0 ? N : M;
     NPARR* arr = new NPARR;
     T* data = (T*) calloc(1, sizeof(element) * size);

@@ -5,45 +5,37 @@
 #include "functions.h"
 #include "classes.h"
 #include "Functions.cpp"
+#include <gtest/gtest.h>
 
-void TEST_EYE_STANDARD()
+TEST(Eye, SquareEvenZero)
 {
-    NP<double>* arr = NP<double>::eye(5, 6, -1, (double) NULL);
+    NP<double>* arr = NP<double>::eye(5, 5, 0, (double) NULL);
     int count = 0;
     for (int i = 0; i < 5; i++)
     {
-        for (int j = 0; j < 6; j++)
+        int x = 0;
+        for (int j = 0; j < 5; j++)
         {
-            std::cout << ((double*) arr->arr->data)[count++] << " ";
+            // ASSERT_EQ(((double*) arr->arr->data)[count++], 0);
+            x = x + (int) ((double*) arr->arr->data)[count++];
         }
-        std::cout << std::endl;
+        ASSERT_EQ(x, 1);
     }
     NP<double>::deleteNP(arr);
 }
 
-void TEST_EMPTY_ALL_VALUES_ZERO()
+TEST(Empty, NDimension)
 {
-    return;
-    int* shape = (int*) malloc(sizeof(int) * 5);
-    shape[0] = 8;
-    shape[1] = 3;
-    shape[2] = 2;
-    shape[3] = 6;
-    shape[4] = 0;
-    NP<char>* temp = NP<char>::empty(shape, (double) NULL);
+    int* s = shape(8, 3, 2, 6);
+    NP<char>* temp = NP<char>::empty(s, (double) NULL);
     for (int i = 0; i < 8 * 3 * 2 * 6; i++)
     {
-        if (((char*)temp->arr->data)[i] != 0)
-        {
-            std::cout << "TEST_EYE_ALL_VALUES_ZERO Error" <<std::endl;
-            NP<char>::deleteNP(temp);
-            return;
-        }
+        ASSERT_EQ(((char*)temp->arr->data)[i], 0);
     }
     NP<char>::deleteNP(temp);
 }
 
-void TEST_IDENTITY()
+TEST(Identity, Hundred)
 {
     int T = 100;
     NP<double>* temp = NP<double>::identity(T);
@@ -53,110 +45,102 @@ void TEST_IDENTITY()
         {
             if (i == j) 
             {
-                if (((double*) temp->arr->data)[T * i + i] != 1)
-                {
-                    std::cout << "TEST_IDENTITY Error" << std::endl;
-                    NP<double>::deleteNP(temp);
-                    return;             
-                }
+                ASSERT_EQ(((double*) temp->arr->data)[T * i + i], 1);
             } 
             else 
             {
-                if (((double*) temp->arr->data)[T * j + i] != 0)
-                {
-                    std::cout << "TEST_IDENTITY Error" << std::endl;
-                    NP<double>::deleteNP(temp);
-                    return;             
-                }
+                ASSERT_EQ(((double*) temp->arr->data)[T * j + i], 0);
             }
         }
     }
     NP<double>::deleteNP(temp);
 }
 
-void TEST_ONES()
+TEST(Ones, TwoDimension)
 {
-    int* shape = (int*) malloc(sizeof(int) * 3);
-    shape[0] = 5;
-    shape[1] = 3;
-    shape[2] = 0;
-    NP<double>* temp = NP<double>::ones(shape, (double) NULL);
+    int* s = shape(5,3);
+    NP<double>* temp = NP<double>::ones(s, (double) NULL);
     for (int i = 0; i < 15; i++)
     {
-        if ( ((double*)temp->arr->data)[i] != 1)
-        {
-            std::cout << "TEST_ONES Error" << std::endl;
-            NP<double>::deleteNP(temp);
-            return;
-        }
+        ASSERT_EQ(((double*)temp->arr->data)[i], 1);
     }
     NP<double>::deleteNP(temp);
 }
 
-void TEST_ZEROS()
+TEST(Zero, TwoDimension)
 {
-    int* shape = (int*) malloc(sizeof(int) * 3);
-    shape[0] = 5;
-    shape[1] = 3;
-    shape[2] = 0;
-    NP<double>* temp = NP<double>::zeros(shape, (double) NULL);
+    int* s = shape(5, 3);
+    NP<double>* temp = NP<double>::zeros(s, (double) NULL);
     for (int i = 0; i < 15; i++)
     {
-        if ( ((double*)temp->arr->data)[i] != 0)
-        {
-            std::cout << "TEST_ZEROS Error" << std::endl;
-            NP<double>::deleteNP(temp);
-            return;
-        }
+        ASSERT_EQ(((double*)temp->arr->data)[i], 0);
     }
     NP<double>::deleteNP(temp);
 }
 
-void TEST_FILL()
+TEST(Fill, IntThreeDimension)
 {
-    int* shape = (int*) malloc(sizeof(int) * 4);
-    shape[0] = 4;
-    shape[1] = 3;
-    shape[2] = 5;
-    shape[3] = 0;
+    int* s = shape(4, 3, 5);
     int FILL = 109;
-    NP<int>* temp = NP<int>::full(shape, FILL);
+    NP<int>* temp = NP<int>::full(s, FILL);
     for (int i = 0; i < 60; i++)
     {
-        if (((int*) temp->arr->data)[i] != FILL)
-        {
-            std::cout << "TEST_FILL ERROR" << std::endl;
-            NP<int>::deleteNP(temp);
-            return;
-        }
+        ASSERT_EQ(((int*) temp->arr->data)[i], FILL);
     }
     NP<int>::deleteNP(temp);
 }
 
-void TEST_SHAPE()
+TEST(Shape, OneDimension)
 {
-    int* s = shape(2,1,3,102,123,34,99,9123,89,19,824,01);
-    // int i = 0;
-    // std::cout << s[i++] << std::endl;
-    // std::cout << s[i++] << std::endl;
-    // std::cout << s[i++] << std::endl;
-    // std::cout << s[i++] << std::endl;
-    // std::cout << s[i++] << std::endl;
-    // std::cout << s[i++] << std::endl;
-    // std::cout << s[i++] << std::endl;
-    // std::cout << s[i++] << std::endl;
-    // std::cout << s[i++] << std::endl;
-    // std::cout << s[i++] << std::endl;
-    // std::cout << s[i++] << std::endl;
-    // std::cout << s[i++] << std::endl;
-    // std::cout << s[i++] << std::endl;
-    // std::cout << s[i++] << std::endl;
+    int* s = shape(2);
+    ASSERT_EQ(s[0], 2);
+    ASSERT_EQ(s[1], 1);
+    ASSERT_EQ(s[2], 0);
+    free(s);
+}
+
+TEST(Shape, TwoDimension)
+{
+    int* s = shape(2,2);
+    ASSERT_EQ(s[0], 2);
+    ASSERT_EQ(s[1], 2);
+    ASSERT_EQ(s[2], 0);
+    free(s);
+}
+
+TEST(Shape, NDimension)
+{
+    int* s = shape(1,2384,30,123,234,123);
+    int x = 0;
+    ASSERT_EQ(s[x++], 1);
+    ASSERT_EQ(s[x++], 2384);
+    ASSERT_EQ(s[x++], 30);
+    ASSERT_EQ(s[x++], 123);
+    ASSERT_EQ(s[x++], 234);
+    ASSERT_EQ(s[x++], 123);
+    ASSERT_EQ(s[x++], 0);
     free(s);
 }
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+int main(int argc, char** argv)
+{
+    ::testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
+}
 
 
 
