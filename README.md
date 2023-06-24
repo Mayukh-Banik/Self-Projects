@@ -1,11 +1,11 @@
-Basic Tensor Functions
+**Basic Tensor Functions**
 
 The goal of this project is to effectively write the entirety
 of all of Numpy's functions that they list on their website 
 from scratch, and to ensure that it runs on a Linux system,
 along with supporting CUDA at a later date.
 
-Installation:
+**Installation:**
 
 Since it is currently under development, just copy the entirety 
 of the github page onto a file that is running a Debian based 
