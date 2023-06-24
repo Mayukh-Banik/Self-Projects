@@ -75,11 +75,9 @@ NP<T>* NP<T>::identity(int N, T element)
     array->data = (void*) eleSize;
     array->elementSize = sizeof(element);
     array->elementCount = N * N;
-    int* shape = (int*) malloc(sizeof(int) * 3);
-    shape[0] = N;
-    shape[1] = N;
-    shape[2] = 0;
-    array->shape = shape;
+    int* s = shape(N, N);
+    array->shape = s;
+    array->dimensionCount = 2;
     NP<T>* pointer = new NP<T>(array);
     return pointer;
 }

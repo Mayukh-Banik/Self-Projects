@@ -94,8 +94,7 @@ TEST(Shape, OneDimension)
 {
     int* s = shape(2);
     ASSERT_EQ(s[0], 2);
-    ASSERT_EQ(s[1], 1);
-    ASSERT_EQ(s[2], 0);
+    ASSERT_EQ(s[1], 0);
     free(s);
 }
 
@@ -122,8 +121,10 @@ TEST(Shape, NDimension)
     free(s);
 }
 
-
-
+TEST(Shape, None)
+{
+    ASSERT_EQ(shape(NULL), nullptr);
+}
 
 
 
@@ -138,23 +139,8 @@ TEST(Shape, NDimension)
 
 int main(int argc, char** argv)
 {
+    int* s = shape(NULL);
+    free(s);
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

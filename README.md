@@ -1,15 +1,45 @@
-Project Steps:
+Basic Tensor Functions
 
-1)
-Re-Create as much of Numpy in C++, but with custom inputs due to the 
-inability of Python like argument parsing as of this point in time
-using only the CPU to make computation easier to code.
+The goal of this project is to effectively write the entirety
+of all of Numpy's functions that they list on their website 
+from scratch, and to ensure that it runs on a Linux system,
+along with supporting CUDA at a later date.
 
-2) 
-Integrate CUDA support into the program to ensure that it works properly.
+Installation:
 
-3)
-Make the code able to be run in Python to allow for easy usage
+Since it is currently under development, just copy the entirety 
+of the github page onto a file that is running a Debian based 
+system with Gtest running globally and just run make clean debug.
+The Makefile has numerous bugs resulting in make clean debug being 
+the only way to ensure every piece of code is up to date. 
 
-4)
-Start implementing Machine Learning methods into the code.
+So far the project is being developed with tests, as of a later 
+unknown date, the goal is to combine the entirety of the project
+into a single header file to allow for easy combination with other 
+projects to assure easy access to internal methods. 
+
+Numpy Methods:
+Empty - Complete
+Eye - Complete
+Identity - Complete
+Ones - Complete
+Zeros - Complete
+Full - Complete
+Array
+FromFile
+FromFunction
+Fromiter
+Fromstring
+Loadtxt
+Arrange
+Linspace
+Logspace
+Geomspace
+Meshgrid
+Diag
+Tri
+Tril
+Triu
+Vander
+Mat
+Bmat
