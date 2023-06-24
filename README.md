@@ -1,4 +1,4 @@
-Basic Tensor Functions
+**Basic Tensor Functions**
 
 The goal of this project is to effectively write the entirety
 of all of Numpy's functions that they list on their website 
