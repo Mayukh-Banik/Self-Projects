@@ -61,7 +61,8 @@ class NP
 
         NP* copy();
 
-        NP* multiply(const NP* obj1, const NP* obj2);
+        template <typename X, typename Y>
+        NP* multiply(const NP<X>* obj1, const NP<Y>* obj2);
         
 
 

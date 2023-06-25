@@ -1,5 +1,6 @@
 #include "includes.h"
 #include "classes.h"
+#include "functions.h"
 
 template <typename T>
 
@@ -34,21 +35,16 @@ NP<T>* NP<T>::copy()
     NP<T>* x = new NP<T>(temp);
     return x;
 }
-
+/**
+ * Element Wise Multiplication
+*/
 template <typename T>
-
-NP<T>* NP<T>::multiply(const NP* obj1, const NP* obj2)
+template <typename X, typename Y>
+NP<T>* NP<T>::multiply(const NP<X>* obj1, const NP<Y>* obj2)
 {
     NPARR* one = obj1->arr;
     NPARR* two = obj2->arr;
-    if (one->shape[one->dimensionCount - 1] != two->shape[two->dimensionCount - 2])
-    {
-        return nullptr;
-    }
-    if (two->dimensionCount > one->dimensionCount)
-    {
-        return nullptr;
-    }
+
     
     return nullptr;
 }

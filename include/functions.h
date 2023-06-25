@@ -13,4 +13,6 @@ template <typename... Things>
  * is assumed that there will be a 1 for the 
  * next value
 */
-int* shape(Things... things);
+extern int* shape(Things... things);
+
+extern bool isMultiplyingValid(int* s1, int* s2, int d1, int d2);
