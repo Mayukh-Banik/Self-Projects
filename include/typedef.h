@@ -1,4 +1,6 @@
-#pragma once
+#ifndef _TYPEDEF_
+#define _TYPEDEF_
+
 
 // Content of typedef.h
 typedef struct Node {
@@ -23,3 +25,4 @@ typedef struct NPARR {
 
 #define MAX_DIMENSION_COUNT 64
 
+#endif

@@ -1,38 +1,33 @@
-# Compiler
-CXX := g++
-# Compiler flags
-CXXFLAGS := -Wall -Wextra -Iinclude -Wno-unused-parameter -Wpedantic -Werror -ldl -lgtest -lgtest_main -lpthread
-
-# Debug flags
-DBGFLAGS := -g
-
-# Directories
-SRCDIR := src
-INCDIR := include
-BINDIR := bin
-
-# Source files
-SRCS := $(wildcard $(SRCDIR)/*.cpp)
-# Object files
-OBJS := $(patsubst $(SRCDIR)/%.cpp,$(BINDIR)/%.o,$(SRCS))
-
-# Executable
-EXECUTABLE := $(BINDIR)/Tensor.out
-
 .PHONY: all clean debug
 
-all: $(EXECUTABLE)
+CXXFLAGS := -Wall -Wextra -Iinclude -Wno-unused-parameter -Wpedantic -Werror -ldl -lgtest -lgtest_main -lpthread
 
-debug: CXXFLAGS += $(DBGFLAGS)
-debug: all
+ifeq ($(DEBUG),1)
+	CXXFLAGS += -g -DDEBUG_MODE
+endif
 
-$(EXECUTABLE): $(OBJS)
-	@mkdir -p $(BINDIR)
-	$(CXX) $^ -o $@ $(CXXFLAGS)
+all: bin/Tensor.out
 
-$(BINDIR)/%.o: $(SRCDIR)/%.cpp
-	@mkdir -p $(@D)
-	$(CXX) -c $< -o $@ $(CXXFLAGS)
+bin/Tensor.out: bin/Functions.o bin/NPConstructorDef.o bin/NPCreationRoutines.o bin/npFuncDef.o bin/Tests.o
+	g++ bin/Functions.o bin/NPConstructorDef.o bin/NPCreationRoutines.o bin/npFuncDef.o bin/Tests.o -o bin/Tensor.out $(CXXFLAGS) -Bdynamic
+
+bin/Functions.o: src/Functions.cpp
+	g++ -c src/Functions.cpp -o bin/Functions.o -Iinclude
+
+bin/NPConstructorDef.o: src/NPConstructorDef.cpp
+	g++ -c src/NPConstructorDef.cpp -o bin/NPConstructorDef.o -Iinclude
+
+bin/NPCreationRoutines.o: src/NPCreationRoutines.cpp
+	g++ -c src/NPCreationRoutines.cpp -o bin/NPCreationRoutines.o -Iinclude
+
+bin/npFuncDef.o: src/npFuncDef.cpp
+	g++ -c src/npFuncDef.cpp -o bin/npFuncDef.o -Iinclude
+
+bin/Tests.o: src/Tests.cpp
+	g++ -c src/Tests.cpp -o bin/Tests.o -Iinclude -lgtest -lgtest_main -lpthread
 
 clean:
-	rm -rf $(BINDIR)
+	rm -f bin/*.o bin/Tensor.out
+
+debug: clean
+	make all DEBUG=1

@@ -1,9 +1,8 @@
 #include "typedef.h"
-#pragma once
+
+#ifndef _CLASSES_
+#define _CLASSES_
 template <typename T>
-
-
-// https://numpy.org/devdocs/reference/generated/numpy.empty.html
 class NP 
 {   
     public:
@@ -67,3 +66,4 @@ class NP
 
 
 };
+#endif

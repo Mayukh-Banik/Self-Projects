@@ -1,18 +1,39 @@
-void TEST_EMPTY_ALL_VALUES_ZERO();
-void TEST_IDENTITY();
-void TEST_ONES();
-void TEST_ZEROS();
-void TEST_FILL();
-void TEST_SHAPE();
-void TEST_EYE_STANDARD();
-
-template <typename... Things>
+#ifndef _FUNCTIONS_
+#define _FUNCTIONS_
 
 /**
- * If only one value is given, it 
- * is assumed that there will be a 1 for the 
- * next value
+ * Given a string of integers, returns a heap allocated 
+ * array of the variable ints passed through terminated 
+ * by and int of value 0. Usage is for every function 
+ * that calls for a 'shape' to have this called beforehand.
+ * 
+ * @param Things A string of comma separated ints to 
+ *  represent shape of the desired array
+ * 
+ * @return Array Shape, pass as is to function calls
 */
-extern int* shape(Things... things);
+template <typename... Things>
+int* shape(Things... things) 
+{
+    int* arr = (int*) malloc(sizeof(int));
+    int a = 0;
+    for(const int p : {things...}) 
+    {
+        arr = (int*) realloc(arr, sizeof(int) * (a+1));
+        arr[a] = p;
+        a++;
+    }
+    if (arr[0] == 0)
+    {
+        free(arr);
+        arr = nullptr;
+        return arr;
+    }
+    arr = (int*) realloc(arr, sizeof(int) * (a+1));
+    arr[a] = 0;
+    return arr;
+}
 
-extern bool isMultiplyingValid(int* s1, int* s2, int d1, int d2);
+bool isMultiplyingValid(int* s1, int* s2, int d1, int d2);
+
+#endif

@@ -1,3 +1,5 @@
+#ifndef _INCLUDES_
+#define _INCLUDES_
 #include <iostream>
 #include <csignal>
 #include <cstring>
@@ -12,3 +14,4 @@
 #include <cstdlib>
 #include <cmath>
 #include <stdarg.h>
+#endif
